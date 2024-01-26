@@ -18,6 +18,7 @@ body {
     background-repeat: no-repeat; /* INVESTIGAR IMPORTANTE */
   }
   
+  /* Configutacion de la pantalla */
   .main_container {
     display: flex; /* Indica que es tipo flexbox */
     flex-direction: column; /* Indica la direccion del orden de los elementos*/ 
@@ -30,27 +31,24 @@ body {
     margin: auto;
     top: 3.3rem; 
     justify-content: center;
-    cursor: url('img/vintage_cursor_default.png'), auto;
+    cursor: url('/rsc/img/vintage_cursor_default.png'), auto;
 
   }
-  .main_container__text{
+
+  /*.main_container__main_window{
+    display: none;
+  }*/
+  
+
+  .main_container__main_window__text{
     text-align: justify;
     margin-left: 0.5rem;
     margin-right: 0.5rem;
     color: #0FFF50;
     margin-bottom: 3.7rem;
   }
-
-  .main_container__copyright{
-    color: #0FFF50;
-    text-align: right;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
-    margin-top: 3.7rem;
-
-  }
   
-  .main_container__button_container button {
+  .main_container__main_window__button_container button {
     background-color: transparent;
     font-size: 0.9rem;
     color: #0FFF50;
@@ -60,12 +58,27 @@ body {
     margin-bottom: 0.5rem;
   }
 
-  .main_container__button_container button:hover{
+  .main_container__main_window__button_container button:hover{
     background-color: #0FFF50;
     color: black;
-    cursor: url('/img/vintage_cursor_pointer.png'), auto;
+    cursor: url('/rsc/img/vintage_cursor_pointer.png'), auto;
   }
-  
-  .main_container__input_text {
+
+  .main_container__main_window__copyright{
+    color: #0FFF50;
+    text-align: right;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    margin-top: 3.7rem;
+
+  }
+
+  /* Ventana de Encrypt */
+  .main_container__encrypt_window{
+    display: none;
+  }
+
+  /* Ventana de Decrypt */
+  .main_container__decrypt_window{
     display: none;
   }
