@@ -15,7 +15,28 @@ body {
     background-image: url("/rsc/img/bg_macintosh.png");
     background-size: cover;
     clip: rect(); /* INVESTIGAR IMPORTANTE */
-    background-repeat: no-repeat; /* INVESTIGAR IMPORTANTE */
+
+    /*Scrollbar configuracion*/
+    --sb-track-color: #000000;
+    --sb-thumb-color: #0fff50;
+    --sb-size: 10px;
+  
+    scrollbar-color: var(--sb-thumb-color) 
+                     var(--sb-track-color);
+  }
+
+  body::-webkit-scrollbar {
+    width: var(--sb-size);
+  }
+
+  body::-webkit-scrollbar-track {
+    background: var(--sb-track-color);
+    border-radius: 10px;
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background: var(--sb-thumb-color);
+    border-radius: 10px;
   }
   
   /* Configutacion de la pantalla */
@@ -34,10 +55,11 @@ body {
     cursor: url('/rsc/img/vintage_cursor_default.png'), auto;
 
   }
+  /* Ventana Principal*/
 
-  /*.main_container__main_window{
+  .main_container__main_window{
     display: none;
-  }*/
+  }
   
 
   .main_container__main_window__text{
@@ -75,8 +97,70 @@ body {
 
   /* Ventana de Encrypt */
   .main_container__encrypt_window{
-    display: none;
+    height: 100%;
   }
+
+  /* Configuración del textarea */
+  .main_container__encrypt_window__input_text {
+    box-sizing: border-box;
+    background-color: transparent;
+    border-radius: 5%;
+    border: 2px solid #0FFF50;
+    font-size: 0.9rem;
+    color: #0FFF50;
+    width: 95%;
+    height: 80%;
+    margin: 0.5rem;
+    outline: none;
+    resize: none;
+    padding: 0.5rem;
+
+  }
+  
+  .main_container__encrypt_window__input_text:focus {
+    border: 2px solid #0FFF50;
+    outline: none;
+    cursor: url('/rsc/img/vintage_cursor_pointer.png'), auto;
+  }
+
+  .main_container__encrypt_window__input_text::placeholder{
+    color: #0FFF5050;
+  }
+
+  .main_container__encrypt_window__input_text:focus::placeholder{
+    color: transparent;
+  }
+  /* ---------------------------------------------------------- */
+
+  /* Configuración del contenedor de botones */
+  
+  .main_container__encrypt_window__buttons_container{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  /* ------------------------------------------------------- */
+
+  /* Configuración de los botones */
+  .main_container__encrypt_window__buttons_container button {
+    box-sizing: border-box;
+    background-color: transparent;
+    font-size: 0.9rem;
+    color: #0FFF50;
+    width: 50%; /* REVISAR */
+    border: 2px solid #0FFF50;
+    margin: 0.1rem;
+  }
+
+  .main_container__encrypt_window__buttons_container button:hover{
+    background-color: #0FFF50;
+    color: black;
+    cursor: url('/rsc/img/vintage_cursor_pointer.png'), auto;
+  }
+  /* ------------------------------------------------------------ */
 
   /* Ventana de Decrypt */
   .main_container__decrypt_window{
