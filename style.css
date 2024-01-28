@@ -61,7 +61,7 @@ body::-webkit-scrollbar-thumb {
   border: 2px solid #0fff50;
   border-radius: 5%;
   position: relative;
-  margin: auto;
+  margin: 0 auto;
   top: 2.6rem;
   cursor: url("/rsc/img/vintage_cursor_default.png"), auto;
 }
@@ -69,8 +69,7 @@ body::-webkit-scrollbar-thumb {
 /* Ventana Principal*/
 .main_container__main_window{
   height: 480px;
-  /* display: flex; */
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
@@ -88,8 +87,7 @@ body::-webkit-scrollbar-thumb {
   color: #0fff50;
   width: 100%;
   border: none;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+  padding: 0.2rem;
 }
 
 .main_container__main_window__button_container button:hover {
@@ -105,13 +103,14 @@ body::-webkit-scrollbar-thumb {
   margin: 0.5rem;
 }
 
-/* Ventana de Encrypt */
-.main_container__encrypt_window {
+/* Ventana Secundaria */
+.main_container__secondary_window {
+  display: none;
   height: 100%;
 }
 
 /* Configuración del textarea */
-.main_container__encrypt_window__input_text {
+.main_container__secondary_window__input_text {
   background-color: transparent;
   border-radius: 5%;
   border: 2px solid #0fff50;
@@ -125,24 +124,24 @@ body::-webkit-scrollbar-thumb {
   padding: 0.5rem;
 }
 
-.main_container__encrypt_window__input_text:focus {
+.main_container__secondary_window__input_text:focus {
   border: 2px solid #0fff50;
   outline: none;
   cursor: url("/rsc/img/vintage_cursor_pointer.png"), auto;
 }
 
-.main_container__encrypt_window__input_text::placeholder {
+.main_container__secondary_window__input_text::placeholder {
   color: #0fff5050;
 }
 
-.main_container__encrypt_window__input_text:focus::placeholder {
+.main_container__secondary_window__input_text:focus::placeholder {
   color: transparent;
 }
 /* ---------------------------------------------------------- */
 
 /* Configuración del contenedor de botones */
 
-.main_container__encrypt_window__buttons_container {
+.main_container__secondary_window__buttons_container {
   display: flex;
   justify-content: center;
   margin-left: 0.5rem;
@@ -152,7 +151,7 @@ body::-webkit-scrollbar-thumb {
 /* ------------------------------------------------------- */
 
 /* Configuración de los botones */
-.main_container__encrypt_window__buttons_container button {
+.main_container__secondary_window__buttons_container button {
   background-color: transparent;
   font-size: var(--fontsize);
   color: #0fff50;
@@ -161,14 +160,9 @@ body::-webkit-scrollbar-thumb {
   margin: 0.1rem;
 }
 
-.main_container__encrypt_window__buttons_container button:hover {
+.main_container__secondary_window__buttons_container button:hover {
   background-color: #0fff50;
   color: black;
   cursor: url("/rsc/img/vintage_cursor_pointer.png"), auto;
 }
 /* ------------------------------------------------------------ */
-
-/* Ventana de Decrypt */
-.main_container__decrypt_window {
-  display: none;
-}

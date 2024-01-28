@@ -1,3 +1,47 @@
+let isEncrypt = false;
+let displayMainWindow = document.getElementsByClassName('main_container__main_window')[0];
+let displaySecondaryWindow = document.getElementsByClassName('main_container__secondary_window')[0];
+
+function showMainWindow(){
+    // Modifica los valores del display de las ventanas, mostrando el menu principal
+    displayMainWindow.style.display = 'flex';
+    displaySecondaryWindow.style.display = 'none';
+}
+
+function showSecondaryWindow(bool){ 
+    // Modifica los valores de las ventanas, mostrando la ventana secundaria. Se modifica text de un boton y el placeholder del textArea
+    isEncrypt = bool
+    displayMainWindow.style.display = 'none';
+    displaySecondaryWindow.style.display = 'block';
+
+    let containerButtons = document.getElementsByClassName('main_container__secondary_window__buttons_container')[0];
+
+    let secondButton = containerButtons.children[1];
+
+    let textArea = document.getElementsByClassName('main_container__secondary_window__input_text')[0];
+
+    if (bool){
+        secondButton.textContent = 'Encrypt';
+        textArea.placeholder = 'Enter text to encrypt...';
+    } else {
+        secondButton.textContent = 'Decrypt';
+        textArea.placeholder = 'Enter text to decrypt...';
+    }
+}
+
+function encryptOrDecrypt(){
+    let result = '';
+    let textArea = document.getElementsByClassName('main_container__secondary_window__input_text')[0];
+
+    if (isEncrypt){
+        result = encrypt(textArea.value);
+
+    } else {
+        result = decrypt(textArea.value);
+    }
+    textArea.value = result;
+}
+
 const encryptCode = new Map([
     ['e','enter'],
     ['i','imes'],
@@ -6,9 +50,9 @@ const encryptCode = new Map([
     ['u','ufat'],
 ]);
 
-console.log(typeof(encryptCode))
-
 function encrypt(msg){
+    console.log(msg);
+    console.log(typeof(msg));
 
     encryptMsg = '';
     
@@ -19,7 +63,7 @@ function encrypt(msg){
             encryptMsg += msg.charAt(i);
         }
     }
-    console.log(encryptMsg);
+    return encryptMsg;
 }
 
 function decrypt(msg){
@@ -34,9 +78,5 @@ function decrypt(msg){
             decryptMsg += msg.charAt(i);
         }
     }
-    console.log(decryptMsg);
+    return decryptMsg;
 }
-
-encrypt('Hola');
-decrypt('fenterlimescimesdaidenters poberr enternfrenterntair enterstenter dentersaifimesober y haibenterrlober cobernclufatimesdober cobern enterximestober!');
-

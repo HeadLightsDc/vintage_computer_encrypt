@@ -24,13 +24,9 @@
 
             <div class="main_container__main_window__button_container">
 
-                <button>
-                    <span>Encrypt</span>
-                </button>
+                <button onclick="showSecondaryWindow(true)">Encrypt</button>
 
-                <button>
-                    <span>Decrypted</span>
-                </button>
+                <button onclick="showSecondaryWindow(false)">Decrypted</button>
 
             </div>
 
@@ -40,48 +36,24 @@
 
         </section>
 
-        </div>
-        <!-- Hacer un Ventana Secundaria y por js insertar valores -->
-        <section class="main_container__encrypt_window">
+        <!-- Ventana Secundaria -->
+        <section class="main_container__secondary_window">
 
-            <textarea name="" class="main_container__encrypt_window__input_text"
-                placeholder="Ingrese el texto a Encriptar..."></textarea>
+            <textarea name="" class="main_container__secondary_window__input_text"></textarea>
 
-            <div class="main_container__encrypt_window__buttons_container">
+            <div class="main_container__secondary_window__buttons_container">
 
-                <button>
-                    <span>Encrypt</span>
-                </button>
+                <button onclick="showMainWindow()">Back to menu</button>
 
-                <button>
-                    <span>Back to menu</span>
-                </button>
+                <button onclick="encryptOrDecrypt()"></button>
 
             </div>
 
         </section>
 
-        <section class="main_container__decrypt_window">
-
-            <textarea name="" class="main_container__decrypt_window__input_text">
-
-                <div class="main_container__decrypt_window__buttons_container">
-                    
-                    <button>
-                        <span>Decrypt</span>
-                    </button>
-
-                    <button>
-                        <span>Back to menu</span>
-                    </button>
-
-                </div>
-
-            </section>
-
-        </section>
-
     </main>
+
+<script src="app.js"></script>
 
 </body>
 
