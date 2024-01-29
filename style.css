@@ -53,25 +53,164 @@ body::-webkit-scrollbar-thumb {
   border-radius: 10px;
 }
 
-/* Configutacion de la pantalla */
+/* Configuracion de la pantalla */
 .main_container {
   display: block;
-  width: 32vw;
-  height: 48vh;
-  border: 2px solid #0fff50;
-  border-radius: 5%;
+  width: 810px;
+  height: 100vh;
   position: relative;
   margin: 0 auto;
-  top: 2.6rem;
-  cursor: url("/rsc/img/vintage_cursor_default.png"), auto;
+}
+
+/* Estilos de Boton */
+
+.switch {
+  display: block;
+  background-color: black;
+  width: 75px;
+  height: 75px;
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2), 0 0 0.5px 1px black, inset 0 1px 1px -1px white, inset 0 0 1px 7.5px #47434c, inset 0 0 1px 11px black;
+  padding: 10px;
+  perspective: 700px;
+  margin-top: 220px;
+  margin-left: 72px;
+}
+
+.switch input {
+  display: none;
+}
+
+  .switch input:checked + .button {
+  transform: translateZ(40px) rotateX(0deg);
+}
+
+.switch input:not(:checked) + .button {
+  box-shadow: 0 0px 2px #ff1818;
+}
+
+.switch input:not(:checked) + .button .light {
+  animation: flicker 0.3s infinite 0.3s;
+}
+
+.switch input:checked + .button .shine {
+  opacity: 1;
+}
+
+.switch input:checked + .button .shadow {
+  opacity: 0;
+}
+
+.switch .button {
+  display: block;
+  transition: all 0.3s cubic-bezier(1, 0, 1, 1);
+  transform-origin: center center -40px;
+  transform: translateZ(0px) rotateX(-0deg);
+  transform-style: preserve-3d;
+  background-color: #9b0621;
+  height: 100%;
+  position: relative;
+  cursor: pointer;
+  background: linear-gradient(#980000 0%, #6f0000 30%, #6f0000 70%, #980000 100%);
+  background-repeat: no-repeat;
+}
+
+.switch .button::before {
+  content: "";
+  background: linear-gradient(rgba(255, 255, 255, 0.8) 10%, rgba(255, 255, 255, 0.3) 30%, #650000 75%, #320000) 50% 50%/97% 97%, #b10000;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 50px;
+  transform-origin: top;
+  transform: rotateX(-90deg);
+  position: absolute;
+  top: 0;
+}
+
+.switch .button::after {
+  content: "";
+  background-image: linear-gradient(#650000, #320000);
+  width: 100%;
+  height: 50px;
+  transform-origin: top;
+  transform: translateY(50px) rotateX(-90deg);
+  position: absolute;
+  bottom: 0;
+  box-shadow: 0 500px 8px 0px black, 0 80px 20px 0px rgba(0, 0, 0, 0.5);
+}
+
+.switch .light {
+  opacity: 0;
+  animation: light-off 1s;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(#ffc97e, #ff1818 40%, transparent 70%); /* Modificado*/
+}
+
+.switch .dots {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(transparent 30%, rgba(101, 0, 0, 0.7) 70%);
+  background-size: 5px 5px;
+}
+
+.switch .shine {
+  transition: all 0.3s cubic-bezier(1, 0, 1, 1);
+  opacity: 0.3;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(white, transparent 0.9%) 50% 50%/97% 97%, linear-gradient(rgba(255, 255, 255, 0.50), transparent 10%, transparent 90%, rgba(255, 255, 255, 0.5)) 50% 50%/97% 97%;
+  background-repeat: no-repeat;
+}
+
+.switch .shadow {
+  transition: all 0.3s cubic-bezier(1, 0, 1, 1);
+  opacity: 1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(black, transparent 5%) 40% 40%/100% 100%, linear-gradient(rgba(0, 0, 0, 0.6), transparent 50%, transparent 50%, rgba(0, 0, 0, 0.6)) 40% 40%/100% 100%;
+  background-repeat: no-repeat;
+}
+
+@keyframes flicker {
+  0% {
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 0.8;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes light-off {
+  0% {
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 0;
+  }
 }
 
 /* Ventana Principal*/
 .main_container__main_window{
-  height: 480px;
+  margin-top: 80px;
+  margin-left: 104px;
+  height: 49vh;
+  width: 75.5%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border: 3px solid #0fff50;
+  border-radius: 5%;
+  cursor: url("/rsc/img/vintage_cursor_default.png"), auto;
 }
 
 .main_container__main_window__text_container {
