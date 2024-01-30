@@ -2,17 +2,30 @@ let isEncrypt = false;
 let displayMainWindow = document.getElementsByClassName('main_container__main_window')[0];
 let displaySecondaryWindow = document.getElementsByClassName('main_container__secondary_window')[0];
 
+let isOnButton = document.getElementById('power_button');
+console.log(isOnButton.checked);
+
+function powerButton(){
+    if (!(isOnButton.checked)){
+        displayMainWindow.style.visibility = 'visible';
+        showMainWindow();
+    } else {
+        displayMainWindow.style.visibility = 'hidden';
+        showMainWindow();
+    }
+}
+
 function showMainWindow(){
     // Modifica los valores del display de las ventanas, mostrando el menu principal
-    displayMainWindow.style.display = 'flex';
-    displaySecondaryWindow.style.display = 'none';
+        displayMainWindow.style.display = 'flex';
+        displaySecondaryWindow.style.display = 'none';
 }
 
 function showSecondaryWindow(bool){ 
     // Modifica los valores de las ventanas, mostrando la ventana secundaria. Se modifica text de un boton y el placeholder del textArea
     isEncrypt = bool
     displayMainWindow.style.display = 'none';
-    displaySecondaryWindow.style.display = 'block';
+    displaySecondaryWindow.style.display = 'flex';
 
     let containerButtons = document.getElementsByClassName('main_container__secondary_window__buttons_container')[0];
 

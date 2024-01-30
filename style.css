@@ -211,6 +211,7 @@ body::-webkit-scrollbar-thumb {
   border: 3px solid #0fff50;
   border-radius: 5%;
   cursor: url("/rsc/img/vintage_cursor_default.png"), auto;
+  visibility: hidden;
 }
 
 .main_container__main_window__text_container {
@@ -245,7 +246,15 @@ body::-webkit-scrollbar-thumb {
 /* Ventana Secundaria */
 .main_container__secondary_window {
   display: none;
-  height: 100%;
+  margin-top: 80px;
+  margin-left: 104px;
+  height: 49vh;
+  width: 75.5%;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 3px solid #0fff50;
+  border-radius: 5%;
+  cursor: url("/rsc/img/vintage_cursor_default.png"), auto;
 }
 
 /* Configuración del textarea */
