@@ -21,7 +21,7 @@
 }
 
 html, body {
-  font-size: 1.65vw;
+  font-size: 1.65vw; 
 }
 
 body {
@@ -56,13 +56,136 @@ body::-webkit-scrollbar-thumb {
 /* Configuracion de la pantalla */
 .main_container {
   display: block;
-  width: 810px;
+  width: 810px; /*810px*/
   height: 100vh;
   position: relative;
-  margin: 0 auto;
+  margin: 0 auto; 
 }
 
-/* Estilos de Boton */
+/* Ventana Principal*/
+.main_container__main_window{
+  margin-top: 80px;
+  margin-left: 104px; 
+  height: 49vh;
+  width: 75.5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 3px solid #0fff50;
+  border-radius: 5%;
+  cursor: url("/rsc/img/vintage_cursor_default.png"), auto;
+  visibility: hidden;
+}
+
+.main_container__main_window__text_container {
+  font-size: var(--fontsize);
+  text-align: justify;
+  margin: 0.3rem;
+  color: #0fff50;
+}
+
+.main_container__main_window__button_container button {
+  background-color: transparent;
+  font-size: var(--fontsize);
+  color: #0fff50;
+  width: 100%;
+  border: none;
+  padding: 0.2rem;
+}
+
+.main_container__main_window__button_container button:hover {
+  background-color: #0fff50;
+  color: black;
+  cursor: url("/rsc/img/vintage_cursor_pointer.png"), auto;
+}
+
+.main_container__main_window__copyright{
+  color: #0fff50;
+  font-size: var(--fontsize);
+  text-align: right;
+  margin: 0.5rem;
+}
+
+/* Ventana Secundaria */
+.main_container__secondary_window {
+  display: none;
+  margin-top: 80px;
+  margin-left: 104px;
+  height: 49vh;
+  width: 75.5%;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 3px solid #0fff50;
+  border-radius: 5%;
+  cursor: url("/rsc/img/vintage_cursor_default.png"), auto;
+}
+
+/* Configuración del textarea */
+.main_container__secondary_window__input_text {
+  background-color: transparent;
+  border-radius: 5%;
+  border: 2px solid #0fff50;
+  font-size: var(--fontsize);
+  color: #0fff50;
+  width: 95%;
+  height: 80%;
+  margin: 0.5rem;
+  outline: none;
+  resize: none;
+  padding: 0.5rem;
+}
+
+.main_container__secondary_window__input_text:focus {
+  border: 2px solid #0fff50;
+  outline: none;
+  cursor: url("/rsc/img/vintage_cursor_pointer.png"), auto;
+}
+
+.main_container__secondary_window__input_text::placeholder {
+  color: #0fff5050;
+}
+
+.main_container__secondary_window__input_text:focus::placeholder {
+  color: transparent;
+}
+/* ---------------------------------------------------------- */
+
+/* Configuración del contenedor de botones */
+
+.main_container__secondary_window__buttons_container {
+  display: flex;
+  justify-content: center;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+/* ------------------------------------------------------- */
+
+/* Configuración de los botones */
+.main_container__secondary_window__buttons_container button {
+  background-color: transparent;
+  font-size: var(--fontsize);
+  color: #0fff50;
+  width: 50%; /* REVISAR */
+  border: 2px solid #0fff50;
+  margin: 0.1rem;
+}
+
+.main_container__secondary_window__buttons_container button:hover {
+  background-color: #0fff50;
+  color: black;
+  cursor: url("/rsc/img/vintage_cursor_pointer.png"), auto;
+}
+
+.main_container__secondary_window__buttons_container button.hover-activo {
+  background-color: black;
+  color: #A80000;
+  border-color: #A80000;
+  cursor: url("/rsc/img/vintage_cursor_default.png"), auto;
+}
+/* ------------------------------------------------------------ */
+
+/* Estilos de Boton Power*/
 
 .switch {
   display: block;
@@ -199,118 +322,4 @@ body::-webkit-scrollbar-thumb {
   }
 }
 
-/* Ventana Principal*/
-.main_container__main_window{
-  margin-top: 80px;
-  margin-left: 104px;
-  height: 49vh;
-  width: 75.5%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border: 3px solid #0fff50;
-  border-radius: 5%;
-  cursor: url("/rsc/img/vintage_cursor_default.png"), auto;
-  visibility: hidden;
-}
-
-.main_container__main_window__text_container {
-  font-size: var(--fontsize);
-  text-align: justify;
-  margin: 0.3rem;
-  color: #0fff50;
-}
-
-.main_container__main_window__button_container button {
-  background-color: transparent;
-  font-size: var(--fontsize);
-  color: #0fff50;
-  width: 100%;
-  border: none;
-  padding: 0.2rem;
-}
-
-.main_container__main_window__button_container button:hover {
-  background-color: #0fff50;
-  color: black;
-  cursor: url("/rsc/img/vintage_cursor_pointer.png"), auto;
-}
-
-.main_container__main_window__copyright{
-  color: #0fff50;
-  font-size: var(--fontsize);
-  text-align: right;
-  margin: 0.5rem;
-}
-
-/* Ventana Secundaria */
-.main_container__secondary_window {
-  display: none;
-  margin-top: 80px;
-  margin-left: 104px;
-  height: 49vh;
-  width: 75.5%;
-  flex-direction: column;
-  justify-content: space-between;
-  border: 3px solid #0fff50;
-  border-radius: 5%;
-  cursor: url("/rsc/img/vintage_cursor_default.png"), auto;
-}
-
-/* Configuración del textarea */
-.main_container__secondary_window__input_text {
-  background-color: transparent;
-  border-radius: 5%;
-  border: 2px solid #0fff50;
-  font-size: var(--fontsize);
-  color: #0fff50;
-  width: 95%;
-  height: 80%;
-  margin: 0.5rem;
-  outline: none;
-  resize: none;
-  padding: 0.5rem;
-}
-
-.main_container__secondary_window__input_text:focus {
-  border: 2px solid #0fff50;
-  outline: none;
-  cursor: url("/rsc/img/vintage_cursor_pointer.png"), auto;
-}
-
-.main_container__secondary_window__input_text::placeholder {
-  color: #0fff5050;
-}
-
-.main_container__secondary_window__input_text:focus::placeholder {
-  color: transparent;
-}
-/* ---------------------------------------------------------- */
-
-/* Configuración del contenedor de botones */
-
-.main_container__secondary_window__buttons_container {
-  display: flex;
-  justify-content: center;
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-/* ------------------------------------------------------- */
-
-/* Configuración de los botones */
-.main_container__secondary_window__buttons_container button {
-  background-color: transparent;
-  font-size: var(--fontsize);
-  color: #0fff50;
-  width: 50%; /* REVISAR */
-  border: 2px solid #0fff50;
-  margin: 0.1rem;
-}
-
-.main_container__secondary_window__buttons_container button:hover {
-  background-color: #0fff50;
-  color: black;
-  cursor: url("/rsc/img/vintage_cursor_pointer.png"), auto;
-}
-/* ------------------------------------------------------------ */
+/* -------------------------------- */

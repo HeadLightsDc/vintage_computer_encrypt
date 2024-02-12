@@ -1,11 +1,24 @@
+const encryptCode = new Map([
+    ['e','enter'],
+    ['i','imes'],
+    ['a','ai'],
+    ['o','ober'],
+    ['u','ufat'],
+]);
+
 let isEncrypt = false;
-let displayMainWindow = document.getElementsByClassName('main_container__main_window')[0];
-let displaySecondaryWindow = document.getElementsByClassName('main_container__secondary_window')[0];
+let displayMainWindow = document.querySelector('.main_container__main_window');
+let displaySecondaryWindow = document.querySelector('.main_container__secondary_window');
+let textArea = document.getElementsByClassName('main_container__secondary_window__input_text')[0];
+let containerButtonsSecondaryWindow = document.querySelector('.main_container__secondary_window__buttons_container');
+let secondButton = containerButtonsSecondaryWindow.children[1];
+let btn_copy = document.createElement('button');
+btn_copy.textContent = 'Copy';
 
 let isOnButton = document.getElementById('power_button');
-console.log(isOnButton.checked);
 
 function powerButton(){
+    // Activa la interfaz del PC
     if (!(isOnButton.checked)){
         displayMainWindow.style.visibility = 'visible';
         showMainWindow();
@@ -16,9 +29,10 @@ function powerButton(){
 }
 
 function showMainWindow(){
-    // Modifica los valores del display de las ventanas, mostrando el menu principal
+    // Modifica los valores del display de las ventanas, mostrando el menu principal 
         displayMainWindow.style.display = 'flex';
         displaySecondaryWindow.style.display = 'none';
+        btn_copy.remove();
 }
 
 function showSecondaryWindow(bool){ 
@@ -26,12 +40,6 @@ function showSecondaryWindow(bool){
     isEncrypt = bool
     displayMainWindow.style.display = 'none';
     displaySecondaryWindow.style.display = 'flex';
-
-    let containerButtons = document.getElementsByClassName('main_container__secondary_window__buttons_container')[0];
-
-    let secondButton = containerButtons.children[1];
-
-    let textArea = document.getElementsByClassName('main_container__secondary_window__input_text')[0];
 
     if (bool){
         secondButton.textContent = 'Encrypt';
@@ -44,7 +52,9 @@ function showSecondaryWindow(bool){
 
 function encryptOrDecrypt(){
     let result = '';
-    let textArea = document.getElementsByClassName('main_container__secondary_window__input_text')[0];
+    containerButtonsSecondaryWindow.insertBefore(btn_copy, secondButton);
+    secondButton.disabled = true;
+    secondButton.classList.add("hover-activo");
 
     if (isEncrypt){
         result = encrypt(textArea.value);
@@ -55,19 +65,8 @@ function encryptOrDecrypt(){
     textArea.value = result;
 }
 
-const encryptCode = new Map([
-    ['e','enter'],
-    ['i','imes'],
-    ['a','ai'],
-    ['o','ober'],
-    ['u','ufat'],
-]);
-
 function encrypt(msg){
-    console.log(msg);
-    console.log(typeof(msg));
-
-    encryptMsg = '';
+    let encryptMsg = '';
     
     for (let i = 0; i < msg.length; i++){
         if (encryptCode.has(msg.charAt(i))){
@@ -81,7 +80,7 @@ function encrypt(msg){
 
 function decrypt(msg){
 
-    decryptMsg = '';
+    let decryptMsg = '';
 
     for (let i = 0; i < msg.length; i++){
         if (encryptCode.has(msg.charAt(i))){
