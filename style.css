@@ -179,8 +179,8 @@ body::-webkit-scrollbar-thumb {
 
 .main_container__secondary_window__buttons_container button.hover-activo {
   background-color: black;
-  color: #A80000;
-  border-color: #A80000;
+  color: #0fff5050;;
+  border-color: #0fff5050;;
   cursor: url("/rsc/img/vintage_cursor_default.png"), auto;
 }
 /* ------------------------------------------------------------ */

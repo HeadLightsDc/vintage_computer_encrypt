@@ -14,6 +14,7 @@ let containerButtonsSecondaryWindow = document.querySelector('.main_container__s
 let secondButton = containerButtonsSecondaryWindow.children[1];
 let btn_copy = document.createElement('button');
 btn_copy.textContent = 'Copy';
+btn_copy.addEventListener('click', copyTextArea);
 
 let isOnButton = document.getElementById('power_button');
 
@@ -33,6 +34,8 @@ function showMainWindow(){
         displayMainWindow.style.display = 'flex';
         displaySecondaryWindow.style.display = 'none';
         btn_copy.remove();
+        textArea.value = '';
+        habiliteAlgorithm();
 }
 
 function showSecondaryWindow(bool){ 
@@ -52,17 +55,23 @@ function showSecondaryWindow(bool){
 
 function encryptOrDecrypt(){
     let result = '';
-    containerButtonsSecondaryWindow.insertBefore(btn_copy, secondButton);
-    secondButton.disabled = true;
-    secondButton.classList.add("hover-activo");
 
-    if (isEncrypt){
-        result = encrypt(textArea.value);
-
+    if (textArea.value){
+        if (isEncrypt){
+            result = encrypt(textArea.value);
+            textArea.placeholder = 'Text copied to clipboard! \n\nIf you want to continue encrypting: Enter text to encrypt...';
+        } else {
+            result = decrypt(textArea.value);
+            textArea.placeholder = 'Text copied to the clipboard! \n\nIf you want to continue decrypting: Enter text to decrypt...'
+        }
+        containerButtonsSecondaryWindow.insertBefore(btn_copy, secondButton);
+        secondButton.disabled = true;
+        secondButton.classList.add('hover-activo');
+        textArea.value = result;
+        textArea.disabled = true;
     } else {
-        result = decrypt(textArea.value);
+        textArea.placeholder = 'You must enter text to continue...'
     }
-    textArea.value = result;
 }
 
 function encrypt(msg){
@@ -91,4 +100,19 @@ function decrypt(msg){
         }
     }
     return decryptMsg;
+}
+
+function copyTextArea(){
+    textArea.select();
+    document.execCommand('copy');
+    textArea.value = '';
+    textArea.blur();
+    btn_copy.remove();
+    habiliteAlgorithm();
+}
+
+function habiliteAlgorithm(){
+    secondButton.disabled = false;
+    secondButton.classList.remove('hover-activo');
+    textArea.disabled = false;
 }
