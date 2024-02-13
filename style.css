@@ -133,12 +133,13 @@ body::-webkit-scrollbar-thumb {
   outline: none;
   resize: none;
   padding: 0.5rem;
+  cursor: url("/rsc/img/vintage_cursor_pointer.png"), auto;
 }
 
 .main_container__secondary_window__input_text:focus {
   border: 2px solid #0fff50;
   outline: none;
-  cursor: url("/rsc/img/vintage_cursor_pointer.png"), auto;
+  cursor: url("/rsc/img/vintage_cursor_text.png"), auto;
 }
 
 .main_container__secondary_window__input_text::placeholder {

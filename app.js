@@ -103,8 +103,7 @@ function decrypt(msg){
 }
 
 function copyTextArea(){
-    textArea.select();
-    document.execCommand('copy');
+    navigator.clipboard.writeText(textArea.value)
     textArea.value = '';
     textArea.blur();
     btn_copy.remove();
