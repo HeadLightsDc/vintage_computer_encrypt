@@ -87,7 +87,7 @@ function encrypt(msg){
     return encryptMsg;
 }
 
-function decrypt(msg){
+function decrypt(msg){ //Arreglar!!! Solo detecta el caracter y hace el desencriptado provocando un mal funcionamiento...
 
     let decryptMsg = '';
 
