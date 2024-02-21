@@ -9,14 +9,17 @@ const encryptCode = new Map([
 let isEncrypt = false;
 let displayMainWindow = document.querySelector('.main_container__main_window');
 let displaySecondaryWindow = document.querySelector('.main_container__secondary_window');
-let textArea = document.getElementsByClassName('main_container__secondary_window__input_text')[0];
 let containerButtonsSecondaryWindow = document.querySelector('.main_container__secondary_window__buttons_container');
+let displayAlertNotAllowed = document.querySelector('.main_container__secondary_window__alert');
 let secondButton = containerButtonsSecondaryWindow.children[1];
+let isOnButton = document.getElementById('power_button');
+
 let btn_copy = document.createElement('button');
 btn_copy.textContent = 'Copy';
-btn_copy.addEventListener('click', copyTextArea);
+btn_copy.addEventListener('change', copyTextArea);
 
-let isOnButton = document.getElementById('power_button');
+let textArea = document.getElementsByClassName('main_container__secondary_window__input_text')[0];
+textArea.addEventListener('keyup', isValidText)
 
 function powerButton(){
     // Activa la interfaz del PC
@@ -33,6 +36,7 @@ function showMainWindow(){
     // Modifica los valores del display de las ventanas, mostrando el menu principal 
         displayMainWindow.style.display = 'flex';
         displaySecondaryWindow.style.display = 'none';
+        displayAlertNotAllowed.style.display = 'none';
         btn_copy.remove();
         textArea.value = '';
         habiliteAlgorithm();
@@ -53,6 +57,24 @@ function showSecondaryWindow(bool){
     }
 }
 
+function isValidText() {
+    //Expresion regular comprueba si una cadena contiene unicamente alfabeto en minuscula, espacio en blanco o salto de linea.
+    let text = textArea.value;
+    let isValid = /^[a-z\s]+$/.test(text);
+
+    if (!isValid && textArea.value) {
+        displayAlertNotAllowed.style.display = 'flex';
+        secondButton.disabled = true;
+        secondButton.classList.add('hover-activo');
+        textArea.disabled = true;
+        setTimeout(() => {
+            displayAlertNotAllowed.style.display = 'none';
+            habiliteAlgorithm();
+        }, 3000);
+        textArea.value = text.replace(/[^a-z\s]/g, '');
+    }
+}
+
 function encryptOrDecrypt(){
     let result = '';
 
@@ -62,7 +84,7 @@ function encryptOrDecrypt(){
             textArea.placeholder = 'Text copied to clipboard! \n\nIf you want to continue encrypting: Enter text to encrypt...';
         } else {
             result = decrypt(textArea.value);
-            textArea.placeholder = 'Text copied to the clipboard! \n\nIf you want to continue decrypting: Enter text to decrypt...'
+            textArea.placeholder = 'Text copied to the clipboard! \n\nIf you want to continue decrypting: Enter text to decrypt...';
         }
         containerButtonsSecondaryWindow.insertBefore(btn_copy, secondButton);
         secondButton.disabled = true;
@@ -70,7 +92,7 @@ function encryptOrDecrypt(){
         textArea.value = result;
         textArea.disabled = true;
     } else {
-        textArea.placeholder = 'You must enter text to continue...'
+        textArea.placeholder = 'You must enter text to continue...';
     }
 }
 
@@ -87,8 +109,7 @@ function encrypt(msg){
     return encryptMsg;
 }
 
-function decrypt(msg){ //Arreglar!!! Solo detecta el caracter y hace el desencriptado provocando un mal funcionamiento...
-
+function decrypt(msg){
     let decryptMsg = '';
 
     for (let i = 0; i < msg.length; i++){
