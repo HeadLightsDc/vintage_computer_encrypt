@@ -16,7 +16,7 @@ let isOnButton = document.getElementById('power_button');
 
 let btn_copy = document.createElement('button');
 btn_copy.textContent = 'Copy';
-btn_copy.addEventListener('change', copyTextArea);
+btn_copy.addEventListener('click', copyTextArea);
 
 let textArea = document.getElementsByClassName('main_container__secondary_window__input_text')[0];
 textArea.addEventListener('keyup', isValidText)
@@ -124,7 +124,7 @@ function decrypt(msg){
 }
 
 function copyTextArea(){
-    navigator.clipboard.writeText(textArea.value)
+    navigator.clipboard.writeText(textArea.value);
     textArea.value = '';
     textArea.blur();
     btn_copy.remove();
