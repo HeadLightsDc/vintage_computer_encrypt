@@ -1,39 +1,36 @@
-const encryptCode = new Map([
-    ['e','enter'],
-    ['i','imes'],
-    ['a','ai'],
-    ['o','ober'],
-    ['u','ufat'],
-]);
+/*--------------------------------Encendido Macintosh/iPhone---------------------------------*/
 
-let isEncrypt = false;
-let displayMainWindow = document.querySelector('.main_container__main_window');
-let displaySecondaryWindow = document.querySelector('.main_container__secondary_window');
-let containerButtonsSecondaryWindow = document.querySelector('.main_container__secondary_window__buttons_container');
-let displayAlertNotAllowed = document.querySelector('.main_container__secondary_window__alert');
-let secondButton = containerButtonsSecondaryWindow.children[1];
+//Se necesita invertir el valor de isOnButton para mejor legibilidad.
 let isOnButton = document.getElementById('power_button');
+isOnButton.addEventListener('click', function() {
+    turnOnOffDevice(!(isOnButton.checked));
+    isOnButtonMobile.checked = !(isOnButton.checked);
+  });
+  
+let isOnButtonMobile = document.getElementById('power_button_mobile');
+isOnButtonMobile.addEventListener('click', function() {
+    turnOnOffDevice(isOnButtonMobile.checked);
+    isOnButton.checked = !(isOnButtonMobile.checked);
+  });
 
-let btn_copy = document.createElement('button');
-btn_copy.textContent = 'Copy';
-btn_copy.addEventListener('click', copyTextArea);
-
-let textArea = document.getElementsByClassName('main_container__secondary_window__input_text')[0];
-textArea.addEventListener('keyup', isValidText)
-
-function powerButton(){
-    // Activa la interfaz del PC
-    if (!(isOnButton.checked)){
+function turnOnOffDevice(isOn){
+    if (isOn){
         displayMainWindow.style.visibility = 'visible';
-        showMainWindow();
+        showMainWindow(); //Vuelve a la pantalla de inicio
     } else {
         displayMainWindow.style.visibility = 'hidden';
-        showMainWindow();
+        showMainWindow(); //Vuelve a la pantalla de inicio
     }
 }
+/*-------------------------------------------------------------------------------------------*/
+
+/*------------------------------Pantalla de Inicio/Secundaria--------------------------------*/
+let displayMainWindow = document.querySelector('.main_container__main_window');
+let displaySecondaryWindow = document.querySelector('.main_container__secondary_window');
+let displayAlertNotAllowed = document.querySelector('.main_container__secondary_window__alert');
+let isEncrypt = false;
 
 function showMainWindow(){
-    // Modifica los valores del display de las ventanas, mostrando el menu principal 
         displayMainWindow.style.display = 'flex';
         displaySecondaryWindow.style.display = 'none';
         displayAlertNotAllowed.style.display = 'none';
@@ -43,8 +40,7 @@ function showMainWindow(){
 }
 
 function showSecondaryWindow(bool){ 
-    // Modifica los valores de las ventanas, mostrando la ventana secundaria. Se modifica text de un boton y el placeholder del textArea
-    isEncrypt = bool
+    isEncrypt = bool;
     displayMainWindow.style.display = 'none';
     displaySecondaryWindow.style.display = 'flex';
 
@@ -56,11 +52,18 @@ function showSecondaryWindow(bool){
         textArea.placeholder = 'Enter text to decrypt...';
     }
 }
+/*-------------------------------------------------------------------------------------------*/
+
+/*-----------------------------------Validacion de texto-------------------------------------*/
+let textArea = document.getElementById('main_container__secondary_window__input_text');
+textArea.addEventListener('keyup', isValidText);
+
+let containerButtonsSecondaryWindow = document.querySelector('.main_container__secondary_window__buttons_container');
+let secondButton = containerButtonsSecondaryWindow.children[1];
 
 function isValidText() {
-    //Expresion regular comprueba si una cadena contiene unicamente alfabeto en minuscula, espacio en blanco o salto de linea.
     let text = textArea.value;
-    let isValid = /^[a-z\s]+$/.test(text);
+    let isValid = /^[a-z\s]+$/.test(text); //Expresion Regular
 
     if (!isValid && textArea.value) {
         displayAlertNotAllowed.style.display = 'flex';
@@ -75,10 +78,43 @@ function isValidText() {
     }
 }
 
+function habiliteAlgorithm() {
+    secondButton.disabled = false;
+    secondButton.classList.remove('hover-activo');
+    textArea.disabled = false;
+}
+/*-------------------------------------------------------------------------------------------*/
+
+/*---------------------------------Encriptado/Desencriptado----------------------------------*/
+const encryptCode = new Map([
+    ['e','enter'],
+    ['i','imes'],
+    ['a','ai'],
+    ['o','ober'],
+    ['u','ufat'],
+]);
+
+function encrypt(text) {
+    return text.replace(/[eioua]/g, match => encryptCode.get(match));
+}
+
+const decryptCode = new Map([
+    ['enter', 'e'],
+    ['imes', 'i'],
+    ['ai', 'a'],
+    ['ober', 'o'],
+    ['ufat', 'u'],
+]);
+
+function decrypt(encryptedText) {
+    return encryptedText.replace(/enter|imes|ai|ober|ufat/g, match => decryptCode.get(match));
+}
+
 function encryptOrDecrypt(){
     let result = '';
 
     if (textArea.value){
+
         if (isEncrypt){
             result = encrypt(textArea.value);
             textArea.placeholder = 'Text copied to clipboard! \n\nIf you want to continue encrypting: Enter text to encrypt...';
@@ -95,33 +131,13 @@ function encryptOrDecrypt(){
         textArea.placeholder = 'You must enter text to continue...';
     }
 }
+/*-----------------------------------------------------------------------------------------------*/
 
-function encrypt(msg){
-    let encryptMsg = '';
-    
-    for (let i = 0; i < msg.length; i++){
-        if (encryptCode.has(msg.charAt(i))){
-            encryptMsg += encryptCode.get(msg.charAt(i));
-        } else {
-            encryptMsg += msg.charAt(i);
-        }
-    }
-    return encryptMsg;
-}
+/*---------------------------------------Boton de Copiado----------------------------------------*/
+let btn_copy = document.createElement('button');
+btn_copy.textContent = 'Copy';
+btn_copy.addEventListener('click', copyTextArea);
 
-function decrypt(msg){
-    let decryptMsg = '';
-
-    for (let i = 0; i < msg.length; i++){
-        if (encryptCode.has(msg.charAt(i))){
-            decryptMsg += msg.charAt(i);
-            i += ((encryptCode.get(msg.charAt(i))).length)-1; 
-        } else {
-            decryptMsg += msg.charAt(i);
-        }
-    }
-    return decryptMsg;
-}
 
 function copyTextArea(){
     navigator.clipboard.writeText(textArea.value);
@@ -130,9 +146,4 @@ function copyTextArea(){
     btn_copy.remove();
     habiliteAlgorithm();
 }
-
-function habiliteAlgorithm(){
-    secondButton.disabled = false;
-    secondButton.classList.remove('hover-activo');
-    textArea.disabled = false;
-}
+/*-----------------------------------------------------------------------------------------------*/

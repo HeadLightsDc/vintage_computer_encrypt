@@ -25,7 +25,7 @@ html, body {
 }
 
 body {
-  background-image: url("rsc/img/bg_macintosh.png");
+  background-image: url("rsc/background/bg_macintosh.png");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -74,7 +74,7 @@ body::-webkit-scrollbar-thumb {
   justify-content: space-between;
   border: 3px solid #0fff50;
   border-radius: 5%;
-  cursor: url("/rsc/img/vintage_cursor_default.png"), auto;
+  cursor: url("/rsc/cursor/vintage_cursor_default.png"), auto;
   visibility: hidden;
 }
 
@@ -111,7 +111,7 @@ body::-webkit-scrollbar-thumb {
 .main_container__main_window__button_container button:hover {
   background-color: #0fff50;
   color: black;
-  cursor: url("/rsc/img/vintage_cursor_pointer.png"), auto;
+  cursor: url("/rsc/cursor/vintage_cursor_pointer.png"), auto;
 }
 
 .main_container__main_window__footer {
@@ -129,7 +129,7 @@ body::-webkit-scrollbar-thumb {
 
 .main_container__main_window__footer svg:hover {
   fill: #0fff5050;
-  cursor: url("/rsc/img/vintage_cursor_pointer.png"), auto;
+  cursor: url("/rsc/cursor/vintage_cursor_pointer.png"), auto;
 }
 
 .main_container__main_window__footer p{
@@ -145,7 +145,6 @@ body::-webkit-scrollbar-thumb {
   position: relative; 
   z-index: 1;
   display: none;
-  position: relative;
   margin: 10% auto;
   height: 47.5%;
   width: 77.5%;
@@ -153,11 +152,11 @@ body::-webkit-scrollbar-thumb {
   justify-content: space-between;
   border: 3px solid #0fff50;
   border-radius: 5%;
-  cursor: url("/rsc/img/vintage_cursor_default.png"), auto;
+  cursor: url("/rsc/cursor/vintage_cursor_default.png"), auto;
 }
 
 /* Configuración del textarea */
-.main_container__secondary_window__input_text {
+#main_container__secondary_window__input_text {
   position: relative; 
   z-index: 0;
   background-color: transparent;
@@ -170,7 +169,7 @@ body::-webkit-scrollbar-thumb {
   outline: none;
   resize: none;
   padding: 0.5rem;
-  cursor: url("/rsc/img/vintage_cursor_text.png"), auto;
+  cursor: url("/rsc/cursor/vintage_cursor_text.png"), auto;
 }
 
 /* Configuración del alert que esta encima del textarea */
@@ -201,16 +200,16 @@ body::-webkit-scrollbar-thumb {
   font-size: 0.75rem;
 }
 
-.main_container__secondary_window__input_text:focus {
+#main_container__secondary_window__input_text:focus {
   outline: none;
-  cursor: url("/rsc/img/vintage_cursor_text.png"), auto;
+  cursor: url("/rsc/cursor/vintage_cursor_text.png"), auto;
 }
 
-.main_container__secondary_window__input_text::placeholder {
+#main_container__secondary_window__input_text::placeholder {
   color: #0fff5050;
 }
 
-.main_container__secondary_window__input_text:focus::placeholder {
+#main_container__secondary_window__input_text:focus::placeholder {
   color: transparent;
 }
 /* ---------------------------------------------------------- */
@@ -228,7 +227,7 @@ body::-webkit-scrollbar-thumb {
   background-color: transparent;
   font-size: var(--fontsize);
   color: #0fff50;
-  width: 50%; /* REVISAR */
+  width: 50%;
   border: 3px solid #0fff50;
   margin: 0.1rem;
 }
@@ -236,14 +235,14 @@ body::-webkit-scrollbar-thumb {
 .main_container__secondary_window__buttons_container button:hover {
   background-color: #0fff50;
   color: black;
-  cursor: url("/rsc/img/vintage_cursor_pointer.png"), auto;
+  cursor: url("/rsc/cursor/vintage_cursor_default.png"), auto;
 }
 
 .main_container__secondary_window__buttons_container button.hover-activo {
   background-color: black;
   color: #0fff5050;
   border-color: #0fff5050;
-  cursor: url("/rsc/img/vintage_cursor_default.png"), auto;
+  cursor: url("/rsc/cursor/vintage_cursor_default.png"), auto;
 }
 /* ------------------------------------------------------------ */
 
@@ -383,10 +382,32 @@ body::-webkit-scrollbar-thumb {
   }
 }
 
+/* Estilos de Boton Power iPhone*/
+#power_button_mobile {
+  display: none;
+}
+
+.btn-power__mobile {
+  display: none;
+}
+
+.btn-power__mobile label {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border: 3px solid #ff1818;
+  border-radius: 30%;
+  cursor: pointer;
+}
+
+#power_button_mobile:checked + label {
+  border-color: #0fff50;
+}
+
 /* -------------------------------- */
 
 @media only screen and (width <= 1440px) and (height <= 1024px) {
-
+  
   :root{
     --fontsize: 1.1rem;
   }
@@ -408,7 +429,7 @@ body::-webkit-scrollbar-thumb {
 
   .main_container__main_window__footer svg {
     width: 0.9rem;
-    height: 1rem;
+    height: 0.9rem;
   }
 
   .main_container__main_window__footer p {
@@ -418,4 +439,90 @@ body::-webkit-scrollbar-thumb {
   .main_container__secondary_window__alert p {
     font-size: 0.9rem;
   }
+}
+
+@media only screen and (width <= 768px) and (height <= 1174px) {
+
+  :root{
+    --fontsize: 2.4rem;
+  }
+
+  .main_container {
+    width: 100vw;
+  }
+
+  .main_container__main_window {
+    margin: 15% auto;
+    width: 86.5%;
+    height: 45%;
+  }
+
+  .main_container__secondary_window {
+    margin: 15% auto;
+    width: 86.5%;
+    height: 45%;
+  }
+
+  .main_container__main_window__footer svg {
+    width: 2.1rem;
+    height: 2.1rem;
+  }
+
+  .main_container__main_window__footer p {
+    font-size: 2.1rem;
+  }
+
+  .main_container__secondary_window__alert p {
+    font-size: 2.1  rem;
+  }
+
+  .switch {
+    margin-top: 30%;
+    margin-left: 2.5%;
+  }
+}
+
+@media only screen and (width <= 375px) and (height <= 933px) {
+
+  body {
+    background-image: url('./rsc/background/bg_iphone.png');
+  }
+
+  .main_container__main_window {
+    margin: 63.5% auto;
+    margin-bottom: 0%;
+    border-radius: 0%;
+    width: 85%;
+    height: 50%;
+  }
+
+  .main_container__secondary_window{
+    margin: 63.5% auto;
+    margin-bottom: 0%;
+    border-radius: 0%;
+    width: 85%;
+    height: 50%;
+  }
+
+  #main_container__secondary_window__input_text{
+    border-radius: 0%;
+  }
+
+  .main_container__secondary_window__alert p {
+    font-size: 2.8rem;
+  }
+
+  .switch {
+    display: none;
+  }
+
+  .btn-power__mobile{
+    display: flex;
+    margin-top: 9.7%;
+  }
+
+  .btn-power__mobile label {
+    margin-left: 47.2%;
+  }
+
 }

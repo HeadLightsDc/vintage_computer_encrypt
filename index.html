@@ -41,7 +41,7 @@
 
         <!-- Ventana Secundaria -->
         <section class="main_container__secondary_window">
-            <textarea class="main_container__secondary_window__input_text"></textarea>
+            <textarea id="main_container__secondary_window__input_text"></textarea>
 
             <div class="main_container__secondary_window__alert">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle" viewBox="0 0 16 16">
@@ -60,7 +60,7 @@
 
         <!-- Boton de Encendido -->
         <label class="switch">
-            <input onclick="powerButton()" id="power_button" type="checkbox" checked="checked" />
+            <input id="power_button" type="checkbox" checked="checked" />
             <div class="button">
                 <div class="light"></div>
                 <div class="dots"></div>
@@ -68,6 +68,13 @@
                 <div class="shadow"></div>
             </div>
         </label>
+
+        <!-- Boton de Encendido iPhone -->
+        <div class="btn-power__mobile">
+            <input type="checkbox" id="power_button_mobile">
+            <label for="power_button_mobile"></label>
+        </div>
+          
     </main>
 
     <script src="app.js"></script>
