@@ -6,14 +6,16 @@
   font-family: Fixedsys Excelsior;
 }
 
+/*-----------------------------------------CSS Reset-----------------------------------------*/
 *, 
 *:after,
 *:before {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Pone el margen/padding/border en 0, para evitar el que viene por defecto en todos los navegadores */
+    box-sizing: border-box;
     text-decoration: none;
 }
+/*-------------------------------------------------------------------------------------------*/
 
 @font-face {
   font-family: "Fixedsys Excelsior";
@@ -31,7 +33,7 @@ body {
   background-size: cover;
   background-attachment: fixed;
 
-  /*Scrollbar configuracion*/
+/*----------------------------------scrollbar configuración----------------------------------*/
   --sb-track-color: transparent;
   --sb-thumb-color: #0fff50;
   --sb-size: 10px;
@@ -52,8 +54,9 @@ body::-webkit-scrollbar-thumb {
   background: var(--sb-thumb-color);
   border-radius: 10px;
 }
+/*-------------------------------------------------------------------------------------------*/
 
-/* Configuracion del marco computadora */
+/*----------------------------Configuración Marco del Dispositivo----------------------------*/
 .main_container {
   display: block;
   width: 41vw;
@@ -62,8 +65,9 @@ body::-webkit-scrollbar-thumb {
   margin: 0 auto; 
   border: 3px solid transparent;
 }
+/*-------------------------------------------------------------------------------------------*/
 
-/* Ventana Principal*/
+/*-------------------------------------Pantalla Principal------------------------------------*/
 .main_container__main_window{
   position: relative;
   margin: 10% auto;
@@ -139,8 +143,9 @@ body::-webkit-scrollbar-thumb {
   margin-right: 0; /* Elimina el margen del último elemento */
   margin-left: auto; /* Empuja el tercer elemento hacia la derecha */
 }
+/*-------------------------------------------------------------------------------------------*/
 
-/* Ventana Secundaria */
+/*------------------------------------Pantalla Secundaria------------------------------------*/
 .main_container__secondary_window {
   position: relative; 
   z-index: 1;
@@ -155,24 +160,6 @@ body::-webkit-scrollbar-thumb {
   cursor: url("/rsc/cursor/vintage_cursor_default.png"), auto;
 }
 
-/* Configuración del textarea */
-#main_container__secondary_window__input_text {
-  position: relative; 
-  z-index: 0;
-  background-color: transparent;
-  border-radius: 5%;
-  border: 3px solid #0fff50;
-  font-size: var(--fontsize);
-  color: #0fff50;
-  height: 100%;
-  margin: 0.5rem 0.5rem 0 0.5rem;
-  outline: none;
-  resize: none;
-  padding: 0.5rem;
-  cursor: url("/rsc/cursor/vintage_cursor_text.png"), auto;
-}
-
-/* Configuración del alert que esta encima del textarea */
 .main_container__secondary_window__alert {
   position: absolute;
   padding: 0.5rem;
@@ -200,6 +187,22 @@ body::-webkit-scrollbar-thumb {
   font-size: 0.75rem;
 }
 
+#main_container__secondary_window__input_text {
+  position: relative; 
+  z-index: 0;
+  background-color: transparent;
+  border-radius: 5%;
+  border: 3px solid #0fff50;
+  font-size: var(--fontsize);
+  color: #0fff50;
+  height: 100%;
+  margin: 0.5rem 0.5rem 0 0.5rem;
+  outline: none;
+  resize: none;
+  padding: 0.5rem;
+  cursor: url("/rsc/cursor/vintage_cursor_text.png"), auto;
+}
+
 #main_container__secondary_window__input_text:focus {
   outline: none;
   cursor: url("/rsc/cursor/vintage_cursor_text.png"), auto;
@@ -212,17 +215,13 @@ body::-webkit-scrollbar-thumb {
 #main_container__secondary_window__input_text:focus::placeholder {
   color: transparent;
 }
-/* ---------------------------------------------------------- */
 
-/* Configuración del contenedor de botones */
 .main_container__secondary_window__buttons_container {
   display: flex;
   justify-content: center;
   margin: 0.5rem
 }
-/* ------------------------------------------------------- */
 
-/* Configuración de los botones */
 .main_container__secondary_window__buttons_container button {
   background-color: transparent;
   font-size: var(--fontsize);
@@ -244,12 +243,12 @@ body::-webkit-scrollbar-thumb {
   border-color: #0fff5050;
   cursor: url("/rsc/cursor/vintage_cursor_default.png"), auto;
 }
-/* ------------------------------------------------------------ */
+/*-------------------------------------------------------------------------------------------*/
 
-/* Estilos de Boton Power*/
+/*--------------------------------------Boton Power PC---------------------------------------*/
 .switch {
   display: block;
-  background-color: black;
+  background-color: black; /*Bug al cambiar del tamaño*/
   width: 75px;
   height: 75px;
   box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2), 0 0 0.5px 1px black, inset 0 1px 1px -1px white, inset 0 0 1px 7.5px #47434c, inset 0 0 1px 11px black;
@@ -381,8 +380,9 @@ body::-webkit-scrollbar-thumb {
     opacity: 0;
   }
 }
+/*-------------------------------------------------------------------------------------------*/
 
-/* Estilos de Boton Power iPhone*/
+/*------------------------------------Boton Power Mobile-------------------------------------*/
 #power_button_mobile {
   display: none;
 }
@@ -404,7 +404,7 @@ body::-webkit-scrollbar-thumb {
   border-color: #0fff50;
 }
 
-/* -------------------------------- */
+/*-------------------------------------------------------------------------------------------*/
 
 @media only screen and (width <= 1440px) and (height <= 1024px) {
   

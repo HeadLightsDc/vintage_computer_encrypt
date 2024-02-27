@@ -24,6 +24,15 @@ function turnOnOffDevice(isOn){
 }
 /*-------------------------------------------------------------------------------------------*/
 
+/*----------------------------------Audio Encendido/Loop-------------------------------------*/
+let audioOnComputer = document.createElement('audio');
+audioOnComputer.src = './rsc/sound/power_on_sound.wav';
+
+let audioLoopComputer = document.createElement('audio');
+audioLoopComputer.src = './rsc/sound/loop_computer_sound.wav';
+audioLoopComputer.loop = true;
+/*-------------------------------------------------------------------------------------------*/
+
 /*------------------------------Pantalla de Inicio/Secundaria--------------------------------*/
 let displayMainWindow = document.querySelector('.main_container__main_window');
 let displaySecondaryWindow = document.querySelector('.main_container__secondary_window');
