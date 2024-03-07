@@ -3,8 +3,10 @@ let isOnButton = document.getElementById('power_button'); //Se necesita invertir
 let isOnButtonMobile = document.getElementById('power_button_mobile');
 let displayMainWindow = document.querySelector('.main_container__main_window');
 let displaySecondaryWindow = document.querySelector('.main_container__secondary_window');
-let displayAlertNotAllowed = document.querySelector('.main_container__secondary_window__alert');
 let displayGameWindow = document.querySelector('.main_container__game_window');
+let displayAlert = document.querySelector('.main_container__alert_window');
+let borderAlert = document.querySelector('.main_container__alert_window__notification');
+let textAlert = document.querySelector('.main_container__alert_window__notification').children[0];
 let textArea = document.getElementById('main_container__secondary_window__input_text');
 let containerButtonsSecondaryWindow = document.querySelector('.main_container__secondary_window__buttons_container');
 let secondButton = containerButtonsSecondaryWindow.children[1]; //Cambiar nombre de variable?
@@ -51,7 +53,7 @@ let isEncrypt = false;
 function showMainWindow(){
     displayMainWindow.style.display = 'flex';
     displaySecondaryWindow.style.display = 'none';
-    displayAlertNotAllowed.style.display = 'none';
+    displayAlert.style.display = 'none';
     displayGameWindow.style.display = 'none';
 }
 
@@ -96,12 +98,11 @@ function isValidText() {
     let isValid = /^[a-z\s]+$/.test(text); //Expresion Regular
 
     if (!isValid && textArea.value) {
-        displayAlertNotAllowed.style.display = 'flex';
+        showAlert('Special characters, capital letters, numbers and accents are not allowed.', './rsc/svg/warning.svg', '#ECE81A;', true); 
         secondButton.disabled = true;
         secondButton.classList.add('hover-activo');
         textArea.disabled = true;
         setTimeout(() => {
-            displayAlertNotAllowed.style.display = 'none';
             habiliteAlgorithm();
         }, 3000);
         textArea.value = text.replace(/[^a-z\s]/g, '');
@@ -143,14 +144,14 @@ function decrypt(encryptedText) {
 function encryptOrDecrypt(){
     let result = '';
 
-    if (textArea.value){
-
+    if (textArea.value){ 
         if (isEncrypt){
             result = encrypt(textArea.value);
             textArea.placeholder = 'Text copied to clipboard! \n\nIf you want to continue encrypting: Enter text to encrypt...';
         } else {
             // Easter egg
             if (textArea.value === 'blockade') {
+                showAlert('Press Space-Bar to START', './rsc/svg/keys-arrow.svg', '#0fff50', false); //false
                 showGameWindow();
                 return
             }
@@ -181,6 +182,32 @@ function copyTextArea(){
     btnCopy.remove();
     habiliteAlgorithm();
 }
+
+/*------------------------------------------Notificación-----------------------------------------*/
+let svgTestAlert;
+
+function showAlert(msg, svg, color, isTime){
+    svgTestAlert = document.createElement('object');
+    svgTestAlert.classList.add('main_container__alert_window__notification__svg');
+    borderAlert.insertBefore(svgTestAlert, textAlert);
+    svgTestAlert.data = svg;
+    textAlert.textContent = msg;
+    textAlert.style.color = color;
+    borderAlert.style.borderColor = color;
+    displayAlert.style.display = 'flex';
+
+    if (isTime) {
+        setTimeout(() => {
+            destroyAlert();
+        }, 3000);
+    }
+}
+
+function destroyAlert(){
+    displayAlert.style.display = 'none'
+    svgTestAlert.remove();
+}
+
 /*-----------------------------------------------------------------------------------------------*/
 
 /*---------------------------------------Pantalla de Juego---------------------------------------*/
@@ -190,8 +217,8 @@ const score = document.getElementById('game_score');
 const highScoreText = document.getElementById('game_high_score');
 
 // Variables de juego
-let gridSizeColumns = 35;
-let gridSizeRows = 24;
+let gridSizeColumns = 26;
+let gridSizeRows = 18;
 let snake = [{x: Math.floor(gridSizeColumns/2), y:Math.floor(gridSizeRows/2)}]; //position
 let food = generateFood();
 let highScore = 0;
@@ -199,6 +226,10 @@ let direction = 'right';
 let gameInterval;
 let gameSpeedDelay = 200;
 let isGameStarted = false;
+
+// Tamaño de map
+gameBorder.style.gridTemplateColumns = `repeat(${gridSizeColumns}, 20px)`;
+gameBorder.style.gridTemplateRows = `repeat(${gridSizeRows}, 20px)`;
 
 // Dibujo de game map, snake, food y actualizacion de score
 function draw(){
@@ -285,11 +316,9 @@ function startGame(){
 // Keypress event listener
 function handleKeyPress(event) {
     console.log(event);
-    if (
-        (!isGameStarted && event.code === 'Space') || 
-        (!isGameStarted && event.code === ' ')
-    ) {
-        startGame();
+    if ((!isGameStarted && event.code === 'Space') || (!isGameStarted && event.code === ' ')) {
+    destroyAlert();
+    startGame();
     } else {
         switch (event.key) {
             case 'ArrowUp':
