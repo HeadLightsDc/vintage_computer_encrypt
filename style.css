@@ -19,7 +19,7 @@
 
 @font-face {
   font-family: "Fixedsys Excelsior";
-  src: url("/rsc/font/Fixedsys\ Excelsior\ 3.01\ Regular.ttf");
+  src: url("/rsc/font/Fixedsys\ Excelsior\ 3.02\ Regular.ttf");
 }
 
 html, body {
@@ -308,7 +308,6 @@ body::-webkit-scrollbar-thumb {
 }
 
 .main_container__alert_window__notification p {
-  color: #ECE81A;
   text-align: center;
   font-size: 0.75rem;
 }

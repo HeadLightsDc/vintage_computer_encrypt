@@ -18,10 +18,10 @@ let backToMenuButton = containerButtonsSecondaryWindow.children[0];
 function turnOnOffDevice(isOn){
     if (isOn){
         displayMainWindow.style.visibility = 'visible';
-        showMainWindow(); //Vuelve a la pantalla de inicio
+        showMainWindow();
     } else {
         displayMainWindow.style.visibility = 'hidden';
-        showMainWindow(); //Vuelve a la pantalla de inicio
+        showMainWindow();
     }
 }
 
@@ -34,7 +34,7 @@ isOnButton.addEventListener('click', function() {
 isOnButtonMobile.addEventListener('click', function() {
     turnOnOffDevice(isOnButtonMobile.checked);
     isOnButton.checked = !(isOnButtonMobile.checked);
-    resetSecondaryWindow;
+    resetSecondaryWindow();
   });
 /*-------------------------------------------------------------------------------------------*/
 
@@ -53,8 +53,8 @@ let isEncrypt = false;
 function showMainWindow(){
     displayMainWindow.style.display = 'flex';
     displaySecondaryWindow.style.display = 'none';
-    displayAlert.style.display = 'none';
     displayGameWindow.style.display = 'none';
+    destroyAlert();
 }
 
 function showSecondaryWindow(bool){ 
@@ -98,7 +98,7 @@ function isValidText() {
     let isValid = /^[a-z\s]+$/.test(text); //Expresion Regular
 
     if (!isValid && textArea.value) {
-        showAlert('Special characters, capital letters, numbers and accents are not allowed.', './rsc/svg/warning.svg', '#ECE81A;', true); 
+        showAlert('Special characters, capital letters, numbers and accents are not allowed.', './rsc/svg/warning.svg', '#ECE81A', true); 
         secondButton.disabled = true;
         secondButton.classList.add('hover-activo');
         textArea.disabled = true;
@@ -151,7 +151,7 @@ function encryptOrDecrypt(){
         } else {
             // Easter egg
             if (textArea.value === 'blockade') {
-                showAlert('Press Space-Bar to START', './rsc/svg/keys-arrow.svg', '#0fff50', false); //false
+                showAlert('Press Space-Bar to START', './rsc/svg/keys-arrow.svg', '#0fff50', false);
                 showGameWindow();
                 return
             }
@@ -184,13 +184,13 @@ function copyTextArea(){
 }
 
 /*------------------------------------------Notificación-----------------------------------------*/
-let svgTestAlert;
+let svgAlert;
 
 function showAlert(msg, svg, color, isTime){
-    svgTestAlert = document.createElement('object');
-    svgTestAlert.classList.add('main_container__alert_window__notification__svg');
-    borderAlert.insertBefore(svgTestAlert, textAlert);
-    svgTestAlert.data = svg;
+    svgAlert = document.createElement('object');
+    svgAlert.classList.add('main_container__alert_window__notification__svg');
+    borderAlert.insertBefore(svgAlert, textAlert);
+    svgAlert.data = svg;
     textAlert.textContent = msg;
     textAlert.style.color = color;
     borderAlert.style.borderColor = color;
@@ -204,8 +204,8 @@ function showAlert(msg, svg, color, isTime){
 }
 
 function destroyAlert(){
-    displayAlert.style.display = 'none'
-    svgTestAlert.remove();
+    displayAlert.style.display = 'none';
+    svgAlert.remove();
 }
 
 /*-----------------------------------------------------------------------------------------------*/
@@ -219,7 +219,9 @@ const highScoreText = document.getElementById('game_high_score');
 // Variables de juego
 let gridSizeColumns = 26;
 let gridSizeRows = 18;
-let snake = [{x: Math.floor(gridSizeColumns/2), y:Math.floor(gridSizeRows/2)}]; //position
+const initialPositionX = Math.floor(gridSizeColumns/2);
+const initialPositionY = Math.floor(gridSizeRows/2);
+let snake = [{x:initialPositionX, y:initialPositionY}, {x:(initialPositionX-1), y:(initialPositionY-1)}];
 let food = generateFood();
 let highScore = 0;
 let direction = 'right';
@@ -322,15 +324,27 @@ function handleKeyPress(event) {
     } else {
         switch (event.key) {
             case 'ArrowUp':
+                if (direction === 'down'){
+                    break
+                }
                 direction = 'up';
                 break;
             case 'ArrowDown':
+                if (direction === 'up'){
+                    break
+                }
                 direction = 'down';
                 break;
             case 'ArrowLeft':
+                if (direction === 'right'){
+                    break
+                }
                 direction = 'left';
                 break;
             case 'ArrowRight':
+                if (direction === 'left'){
+                    break
+                }
                 direction = 'right';
                 break;
         }
@@ -367,7 +381,7 @@ function increaseSpeed() {
   function resetGame() {
     updateHighScore();
     stopGame();
-    snake = [{x: Math.floor(gridSizeColumns/2), y:Math.floor(gridSizeRows/2)}];
+    snake = [{x:initialPositionX, y:initialPositionY}, {x:(initialPositionX-1), y:(initialPositionY)}];
     food = generateFood();
     direction = 'right';
     gameSpeedDelay = 200;
@@ -375,7 +389,7 @@ function increaseSpeed() {
   }
   
   function updateScore() {
-    const currentScore = snake.length - 1;
+    const currentScore = snake.length - 2;
     score.textContent = currentScore.toString().padStart(3, '0');
   }
   
@@ -385,7 +399,7 @@ function increaseSpeed() {
   }
   
   function updateHighScore() {
-    const currentScore = snake.length - 1;
+    const currentScore = snake.length - 2;
     if (currentScore > highScore) {
       highScore = currentScore;
       highScoreText.textContent = highScore.toString().padStart(3, '0');
