@@ -228,7 +228,7 @@ body::-webkit-scrollbar-thumb {
   width: 77.5%;
   height: 47.5%;
   display: none;
-  justify-content: space-between;
+  justify-content: center;
   flex-direction: column;
   align-items: center;
   border: 3px solid #0fff50;
@@ -238,18 +238,22 @@ body::-webkit-scrollbar-thumb {
 
 .main_container__game_window__scores {
   display: flex;
-  margin-top: 5%;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
-
 
 .main_container__game_window__scores h1, p{
   color: #0fff50;
   font-size: var(--fontsize);
 }
 
+.main_container__game_window__scores_1 {
+  display: flex;
+}
+
 .main_container__game_window__border {
   display: grid;
-  margin-bottom: 5%;
   border: 3px solid #0fff50;
 }
 
@@ -285,7 +289,7 @@ body::-webkit-scrollbar-thumb {
 
 .main_container__alert_window__notification{
   display: flex;
-  background-color: transparent;
+  background-color: black;
   position: absolute;
   padding: 0.5rem;
   top: 19.5%;

@@ -78,6 +78,7 @@ function resetSecondaryWindow(){
 }
 
 function showGameWindow(){
+    showAlert('Press Space-Bar to START', './rsc/svg/keys-arrow.svg', '#0fff50', false);
     displaySecondaryWindow.style.display = 'none';
     displayGameWindow.style.display = 'flex';
     document.addEventListener('keydown', handleKeyPress);
@@ -151,7 +152,6 @@ function encryptOrDecrypt(){
         } else {
             // Easter egg
             if (textArea.value === 'blockade') {
-                showAlert('Press Space-Bar to START', './rsc/svg/keys-arrow.svg', '#0fff50', false);
                 showGameWindow();
                 return
             }
@@ -205,7 +205,9 @@ function showAlert(msg, svg, color, isTime){
 
 function destroyAlert(){
     displayAlert.style.display = 'none';
-    svgAlert.remove();
+    if (svgAlert){
+        svgAlert.remove();
+    }
 }
 
 /*-----------------------------------------------------------------------------------------------*/
@@ -381,6 +383,7 @@ function increaseSpeed() {
   function resetGame() {
     updateHighScore();
     stopGame();
+    showAlert('Press Space-Bar to CONTINUE', './rsc/svg/game-over.svg', '#ff1818', false);
     snake = [{x:initialPositionX, y:initialPositionY}, {x:(initialPositionX-1), y:(initialPositionY)}];
     food = generateFood();
     direction = 'right';
