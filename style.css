@@ -19,7 +19,7 @@
 
 @font-face {
   font-family: "Fixedsys Excelsior";
-  src: url("/rsc/font/Fixedsys\ Excelsior\ 3.02\ Regular.ttf");
+  src: url("./rsc/font/Fixedsys\ Excelsior\ 3.02\ Regular.ttf");
 }
 
 html, body {
@@ -27,7 +27,7 @@ html, body {
 }
 
 body {
-  background-image: url("rsc/background/bg_macintosh.png");
+  background-image: url("./rsc/background/bg_macintosh.png");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -115,7 +115,7 @@ body::-webkit-scrollbar-thumb {
 .main_container__main_window__button_container button:hover {
   background-color: #0fff50;
   color: black;
-  cursor: url("/rsc/cursor/vintage_cursor_pointer.png"), auto;
+  cursor: url("./rsc/cursor/vintage_cursor_pointer.png"), auto;
 }
 
 .main_container__main_window__footer {
@@ -133,7 +133,7 @@ body::-webkit-scrollbar-thumb {
 
 .main_container__main_window__footer svg:hover {
   fill: #0fff5050;
-  cursor: url("/rsc/cursor/vintage_cursor_pointer.png"), auto;
+  cursor: url("./rsc/cursor/vintage_cursor_pointer.png"), auto;
 }
 
 .main_container__main_window__footer p{
@@ -159,7 +159,7 @@ body::-webkit-scrollbar-thumb {
   justify-content: space-between;
   border: 3px solid #0fff50;
   border-radius: 5%;
-  cursor: url("/rsc/cursor/vintage_cursor_default.png"), auto;
+  cursor: url("./rsc/cursor/vintage_cursor_default.png"), auto;
 }
 
 #main_container__secondary_window__input_text {
@@ -175,12 +175,12 @@ body::-webkit-scrollbar-thumb {
   outline: none;
   resize: none;
   padding: 0.5rem;
-  cursor: url("/rsc/cursor/vintage_cursor_text.png"), auto;
+  cursor: url("./rsc/cursor/vintage_cursor_text.png"), auto;
 }
 
 #main_container__secondary_window__input_text:focus {
   outline: none;
-  cursor: url("/rsc/cursor/vintage_cursor_text.png"), auto;
+  cursor: url("./rsc/cursor/vintage_cursor_text.png"), auto;
 }
 
 #main_container__secondary_window__input_text::placeholder {
@@ -210,14 +210,14 @@ body::-webkit-scrollbar-thumb {
 .main_container__secondary_window__buttons_container button:hover {
   background-color: #0fff50;
   color: black;
-  cursor: url("/rsc/cursor/vintage_cursor_default.png"), auto;
+  cursor: url("./rsc/cursor/vintage_cursor_default.png"), auto;
 }
 
 .main_container__secondary_window__buttons_container button.hover-activo {
   background-color: black;
   color: #0fff5050;
   border-color: #0fff5050;
-  cursor: url("/rsc/cursor/vintage_cursor_default.png"), auto;
+  cursor: url("./rsc/cursor/vintage_cursor_default.png"), auto;
 }
 /*-------------------------------------------------------------------------------------------*/
 
@@ -233,7 +233,7 @@ body::-webkit-scrollbar-thumb {
   align-items: center;
   border: 3px solid #0fff50;
   border-radius: 5%;
-  cursor: url("/rsc/cursor/vintage_cursor_default.png"), auto;
+  cursor: url("./rsc/cursor/vintage_cursor_default.png"), auto;
 }
 
 .main_container__game_window__scores {
@@ -303,7 +303,7 @@ body::-webkit-scrollbar-thumb {
   border-radius: 5%;
   z-index: 3;
   pointer-events: auto;
-  cursor: url("/rsc/cursor/vintage_cursor_default.png"), auto;
+  cursor: url("./rsc/cursor/vintage_cursor_default.png"), auto;
 }
 
 .main_container__alert_window__notification__svg {
